@@ -16,12 +16,16 @@ export function Header() {
           {site.name}
         </Link>
         <ul className="flex items-center gap-1 sm:gap-2">
-          {site.links.map((link) => (
+          {site.links.map((link) => {
+            const isMailto = link.href.startsWith("mailto:");
+            const openInNewTab = link.external && !isMailto;
+
+            return (
             <li key={link.label}>
               <a
                 href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
+                target={openInNewTab ? "_blank" : undefined}
+                rel={openInNewTab ? "noopener noreferrer" : undefined}
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-emerald-400"
               >
                 <LinkIcon
@@ -31,7 +35,8 @@ export function Header() {
                 <span className="hidden sm:inline">{link.label}</span>
               </a>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </nav>
     </header>

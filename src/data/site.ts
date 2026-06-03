@@ -32,7 +32,8 @@ export const site = {
     },
   ],
   skills: [
-    "Co Pilot",
+    "MS SQL",
+    ".NET",
     "Claude AI",
     "Python",
     "C#",
